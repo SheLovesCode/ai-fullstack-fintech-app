@@ -60,12 +60,12 @@ const CreatePayoutModal: React.FC<Props> = ({ open, onClose, onSave }) => {
 
         const payload: NewPayout = {
             ...formData,
-            amount: Number(formData.amount), // Convert before sending
+            amount: Number(formData.amount),
             idempotencyKey,
         };
 
         try {
-            onSave(payload); // Parent handles API call
+            onSave(payload);
             toast.success("Payout created successfully!");
             setConfirmationOpen(false);
             onClose();
@@ -99,7 +99,7 @@ const CreatePayoutModal: React.FC<Props> = ({ open, onClose, onSave }) => {
                         </Typography>
 
                         <TextField
-                            label="Amount (R)"
+                            label="Amount"
                             variant="outlined"
                             fullWidth
                             margin="normal"

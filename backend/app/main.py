@@ -1,4 +1,3 @@
-# app/main.py
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from starlette.middleware.sessions import SessionMiddleware

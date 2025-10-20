@@ -1,4 +1,4 @@
-# mock_payments-microservice
+
 import hashlib
 import hmac
 import json
@@ -7,10 +7,10 @@ import random
 import threading
 import time
 import uuid
+import httpx
+
 from decimal import Decimal
 from typing import Dict
-
-import httpx
 from fastapi import FastAPI
 
 from .config import Config

@@ -1,4 +1,3 @@
-# app/routes/currencies.py
 import logging
 
 from fastapi import APIRouter, Depends, HTTPException, status

@@ -9,7 +9,7 @@ const LoginPage: React.FC = () => {
     return (
         <div className="login-page">
             <div className="login-container">
-                <h1>Welcome to Fintech App</h1>
+                <h1>Welcome to Diana's Fintech App</h1>
                 <p>Login with your Google account to continue</p>
                 <button className="primary-button" onClick={handleGoogleLogin}>
                     Login with Google

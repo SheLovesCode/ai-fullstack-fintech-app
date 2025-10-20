@@ -11,7 +11,7 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    oauth_provider = Column(String, nullable=False)  # e.g., "google" or "github"
+    oauth_provider = Column(String, nullable=False)
     oauth_id = Column(String, nullable=False, unique=True, index=True)
     email = Column(String, nullable=True, unique=True, index=True)
     full_name = Column(String, nullable=True)
