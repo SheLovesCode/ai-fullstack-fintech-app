@@ -1,0 +1,53 @@
+services:
+  postgres:
+    image: postgres:13
+    env_file:
+      - ./.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    networks:
+      - appnetwork
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+      - ./.env
+    ports:
+      - "4000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - appnetwork
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - appnetwork
+
+  payment-microservice:
+    build:
+      context: ./payment-microservice
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    env_file:
+      - ./payment-microservice/.env
+    networks:
+      - appnetwork
+
+volumes:
+  postgres-db-volume:
+
+networks:
+  appnetwork:
+    driver: bridge

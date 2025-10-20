@@ -1,0 +1,124 @@
+{
+  "info": {
+    "name": "AI-Assisted Fintech App",
+    "_postman_id": "b7f0b7ea-9a2d-4a97-aefd-1234567890ab",
+    "description": "Postman collection for testing AI-assisted fintech app endpoints: OAuth, payouts, webhooks, user profile, currencies, and mock payments microservice.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "OAuth Login",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Get Current User",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/user/me",
+          "host": ["{{base_url}}"],
+          "path": ["user", "me"]
+        }
+      }
+    },
+    {
+      "name": "List Payouts",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/payouts?offset=0&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["payouts"],
+          "query": [
+            { "key": "offset", "value": "0" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Payout",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 100.50,\n  \"currency\": \"USD\",\n  \"idempotency_key\": \"{{idempotency_key}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/payouts",
+          "host": ["{{base_url}}"],
+          "path": ["payouts"]
+        }
+      }
+    },
+    {
+      "name": "Webhook Simulation",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Mock-Signature", "value": "{{correlation_id}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payout_id\": 1,\n  \"new_status\": \"EXECUTED\",\n  \"request_id\": \"{{correlation_id}}\",\n  \"timestamp\": 1699999999\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/webhooks/payments",
+          "host": ["{{base_url}}"],
+          "path": ["webhooks", "payments"]
+        }
+      }
+    },
+    {
+      "name": "List Supported Currencies",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/currency",
+          "host": ["{{base_url}}"],
+          "path": ["currency"]
+        }
+      }
+    },
+    {
+      "name": "Create Payout (Mock Payments Microservice)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": 1,\n  \"amount\": 100.50,\n  \"currency\": \"USD\",\n  \"idempotency_key\": \"{{idempotency_key}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/mock/payouts",
+          "host": ["{{base_url}}"],
+          "path": ["mock", "payouts"]
+        }
+      }
+    }
+  ]
+}
