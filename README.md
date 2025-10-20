@@ -84,8 +84,8 @@ Make sure you have the following installed on your local machine:
 ### 📂 Clone the Repository
 
 ```bash
-    git clone git@github.com:SheLovesCode/full-stack-fintech-app.git
-    cd full-stack-fintech-app
+    git clone git@github.com:SheLovesCode/ai-fullstack-fintech-app.git
+    cd ai-fullstack-fintech-app
 ```
 
 ## 🚀 Start the Services
